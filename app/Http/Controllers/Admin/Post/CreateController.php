@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Admin\Post;
 
+use App\Models\Admin\Category;
+use App\Models\Admin\Tag;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
-use App\Models\Category;
-use App\Models\Tag;
-use function React\Promise\all;
 
 class CreateController extends BaseController
 {

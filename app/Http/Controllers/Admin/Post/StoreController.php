@@ -3,8 +3,7 @@
 namespace App\Http\Controllers\Admin\Post;
 
 use App\Http\Requests\Admin\Post\StoreRequest;
-use App\Models\Post;
-use App\Models\Tag;
+use App\Models\Admin\Post;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
