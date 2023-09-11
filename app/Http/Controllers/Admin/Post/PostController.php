@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers\Admin\Post;
 
-use App\Http\Requests\Admin\Post\StoreRequest;
-use App\Http\Requests\Admin\Post\UpdateRequest;
+use Exception;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Facades\Storage;
+
+use App\Http\Requests\Admin\Post\StoreRequest;
+use App\Http\Controllers\Admin\Post\BaseController;
+use App\Http\Requests\Admin\Post\UpdateRequest;
 use App\Models\Admin\Tag;
 use App\Models\Admin\Category;
 use App\Models\Admin\Post;
-use Illuminate\Support\Facades\Storage;
 
 class PostController extends BaseController
 {
@@ -31,16 +33,8 @@ class PostController extends BaseController
 
     public function store(StoreRequest $request)
     {
-        try {
-            $data = $request->validated();
-            $data['image'] = Storage::put('/image', $data['image']);
-            $tags = $data['tag_ids'];
-            unset($data['tag_ids']);
-            $post = Post::firstOrCreate($data);
-            $post->tags()->attach($tags);
-        }catch(\Exeption $exeption){
-            abort(404);
-        }
+        $data = $request->validated();
+        $this->service->store($data);
         return redirect ()->route('admin.post.index');
     }
 
@@ -53,13 +47,15 @@ class PostController extends BaseController
 
     public function edit(Post $post)
     {
-        return view('admin.post.edit', compact('post'));
+        $categories=Category::all();
+        $tags=Tag::all();
+        return view('admin.post.edit', compact('post','categories','tags'));
     }
 
     public function update(UpdateRequest $request, Post $post)
     {
         $data=$request->validated();
-        $post->update($data);
+        $post=$this->service->update($data,$post);
         return view('admin.post.show', compact('post'));
     }
 
