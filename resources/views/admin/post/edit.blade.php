@@ -58,7 +58,7 @@
                                         data-placeholder="Выберите тэги" style="width: 100%;" data-select2-id="7"
                                         tabindex="-1" aria-hidden="true">
                                     @foreach($tags as $tag)
-                                        <option {{is_array($post->tags->pluck('id')->toArray()) && in_array($tag->id, $post->tags->pluk('id')->toArray())?'selected' : '' }}value="{{$tag->id}}" >{{$tag->title}}</option>
+                                        <option {{is_array($post->tags->pluck('id')->toArray()) && in_array($tag->id, $post->tags->pluck('id')->toArray())?'selected' : '' }}value="{{$tag->id}}" >{{$tag->title}}</option>
                                     @endforeach
                                 </select>
                             </div>
