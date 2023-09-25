@@ -9,7 +9,7 @@ class StoreRequest extends FormRequest
     /**
      * Determine if the user is authorized to make this request.
      */
-    public function authorize(): bool
+    public function authorize()
     {
         return true;
     }
@@ -19,7 +19,7 @@ class StoreRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
      */
-    public function rules(): array
+    public function rules()
     {
         return [
             'title'=>'required|string',
@@ -28,6 +28,22 @@ class StoreRequest extends FormRequest
             'image'=>'required|file',
             'tag_ids'=>'nullable|array',
             'tag_ids.*'=>'nullable|integer|exists:tags,id'
+
+        ];
+    }
+
+    public function messages()
+    {
+        return[
+          'title.required'=>'Это  поле должно быть заполнено',
+          'title.string'=>'Это  поле должно быть заполнено строковым значением',
+          'content.required'=>'Это  поле должно быть заполнено',
+          'content.string'=>'Это  поле должно быть заполнено строковым значением',
+          'category_id.required'=>'Это  поле должно быть заполнено',
+          'category_id.integer'=>'ID категории должен быть числом',
+          'category_id.exists'=>'ID категории должен быть в базе данных',
+          'image.required'=>'Это  поле должно быть заполнено',
+          'image.file'=>'Необходимо выбрать файл',
 
         ];
     }

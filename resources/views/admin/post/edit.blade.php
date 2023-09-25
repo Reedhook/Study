@@ -5,7 +5,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Updating</h1>
+                        <h1 class="m-0">Редактирование</h1>
                     </div>
                 </div>
             </div>
@@ -22,26 +22,31 @@
                                 <input type="text" name='title' class="form-control"
                                        placeholder="Name of Post" value="{{$post->title}}">
                                 @error('title')
-                                <div class="text-danger">Нужно ввести значение в поле</div>
+                                <div class="text-danger">{{$message}}</div>
                                 @enderror
                             </div>
                             <div class="form-group">
                                 <textarea id="summernote" name="content" >{{$post->content}} </textarea>
+                                @error('content')
+                                <div class="text-danger">{{$message}}</div>
+                                @enderror
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputFile" >Загрузить изображение</label>
+                                <label for="image" >Загрузить изображение</label>
                                 <div class="w25">
+                                    <div class="row">
                                     <img src="{{asset('storage/'.$post->image)}}" alt="image">
+                                </div>
                                 </div>
                                 <div class="input-group">
                                     <div class="custom-file">
-                                        <input type="file" name="image" class="custom-file-input" id="exampleInputFile">
-                                        <label class="custom-file-label" for="exampleInputFile">Выбрать файл</label>
-                                    </div>
-                                    <div class="input-group-append">
-                                        <span class="input-group-text">Загрузить</span>
+                                        <input type="file" name="image" class="custom-file-input" id="image" value="{{$post->image}}">
+                                        <label class="custom-file-label" for="image" > Выбрать файл</label>
                                     </div>
                                 </div>
+                                @error('image')
+                                <div class="text-danger">{{$message}}</div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label> Выбор категории</label>
@@ -62,7 +67,7 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <input type="submit" class="btn btn-primary" value="Update">
+                            <input type="submit" class="btn btn-primary" value="Редактировать">
                         </form>
                     </div>
                 </div>

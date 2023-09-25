@@ -19,10 +19,16 @@ class StoreRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
      */
-    public function rules(): array
+    public function rules()
     {
         return [
-            'title'=>'required|string|unique:categories'
+            'title'=>'required|string'
+        ];
+    }
+    public function messages(){
+        return [
+            'title.required'=>'Это поле должно быть заполненным',
+            'title.string'=>'Вводимое значение должно быть строчным'
         ];
     }
 }

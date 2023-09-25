@@ -6,7 +6,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Посты</h1>
+                          <h1 class="m-0">Посты</h1>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
@@ -23,23 +23,27 @@
                             <div class="form-group">
                                 <input type="text" name="title" class="form-control" placeholder="Введите название поста" value="{{old('title')}}">
                                 @error('title')
-                                <div class="text-danger">Нужно ввести правильное значение в поле</div>
+                                <div class="text-danger">{{$message}}</div>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <textarea id="summernote" name="content"> </textarea>
+                                <textarea id="summernote" name="content"> {{old('content')}}</textarea>
+                                @error('content')
+                                <div class="text-danger">{{$message}}</div>
+                                @enderror
                             </div>
                             <div class="form-group" >
                                 <label for="exampleInputFile">Загрузить изображение</label>
                                 <div class="input-group">
                                     <div class="custom-file">
-                                        <input type="file" name="image" class="custom-file-input" id="exampleInputFile">
-                                        <label class="custom-file-label" for="exampleInputFile">Выбрать файл</label>
+                                        <input type="file" name="image" class="custom-file-input" id="image" value="{{old('image')}}">
+                                        <label class="custom-file-label" for="image" >Выбрать файл</label>
                                     </div>
-                                    <div class="input-group-append">
-                                        <span class="input-group-text">Загрузить</span>
-                                    </div>
+
                                 </div>
+                                @error('image')
+                                <div class="text-danger">{{$message}}</div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label> Выбор категории</label>
@@ -48,19 +52,24 @@
                                         <option value="{{$category->id}}">{{$category->title}}</option>
                                     @endforeach
                                 </select>
+                                @error('category_id')
+                                <div class="text-danger">{{$message}}</div>
+                                @enderror
                             </div>
                                 <div class="form-group">
                                     <label>Выбор тэга</label>
                                     <select class="select2 select2-hidden-accessible" name="tag_ids[]" multiple=""
-                                            data-placeholder="Выберите тэги" style="width: 100%;" data-select2-id="7"
-                                            tabindex="-1" aria-hidden="true">
+                                            data-placeholder="Выберите тэги" style="width: 100%;">
                                         @foreach($tags as $tag)
                                             <option value="{{$tag->id}}">{{$tag->title}}</option>
                                         @endforeach
                                     </select>
+                                    @error('tag_ids')
+                                    <div class="text-danger">{{$message}}</div>
+                                    @enderror
                                 </div>
                             <div class="form-group">
-                                <input type="submit" class="btn btn-primary" value="Add">
+                                <input type="submit" class="btn btn-primary" value="Добавить">
                             </div>
                         </form>
                     </div>

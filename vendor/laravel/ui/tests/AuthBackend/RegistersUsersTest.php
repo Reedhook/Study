@@ -6,11 +6,9 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Pipeline;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Testing\TestResponse;
-use Illuminate\Validation\ValidationException;
 use Orchestra\Testbench\Factories\UserFactory;
 use Orchestra\Testbench\TestCase;
 
@@ -69,7 +67,7 @@ class RegistersUsersTest extends TestCase
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \App\Models\User
+     * @return \App\Models\Admin\User
      */
     protected function create(array $data)
     {

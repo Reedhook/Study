@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Post;
 use Exception;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 use App\Http\Requests\Admin\Post\StoreRequest;
@@ -13,6 +14,7 @@ use App\Http\Requests\Admin\Post\UpdateRequest;
 use App\Models\Admin\Tag;
 use App\Models\Admin\Category;
 use App\Models\Admin\Post;
+use Illuminate\Support\Str;
 
 class PostController extends BaseController
 {
