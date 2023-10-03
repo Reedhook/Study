@@ -32,7 +32,6 @@ class CategoryController extends BaseController
 
     public function show(Category $category)
     {
-
         return view('admin.category.show', compact('category'));
     }
 
@@ -51,6 +50,7 @@ class CategoryController extends BaseController
     public function delete(Category $category)
     {
         $category->delete();
+
         return redirect()->route('admin.category.index');
     }
 }

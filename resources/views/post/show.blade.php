@@ -35,7 +35,7 @@
                                 <div>
                                     <span>{{$post->liked_users_count}}</span>
                                     <i class="fas fa-heart"></i>
-                                </div>
+                                </div>cd
                             @endguest
                     </section>
 
